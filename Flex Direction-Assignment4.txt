@@ -1,0 +1,68 @@
+//diagnol: 
+import React, { useState } from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
+
+export default function App() {
+  const [direction, setDirection] = useState('column');
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Flex Direction: {direction}</Text>
+
+      <View
+        style={[
+          styles.boxContainer,
+          direction === 'diagonal' ? styles.diagonal : { flexDirection: direction },
+        ]}
+      >
+        <View style={[styles.box, { backgroundColor: '#4A90E2' }]} />
+        <View style={[styles.box, { backgroundColor: '#357ABD' }]} />
+        <View style={[styles.box, { backgroundColor: '#2C5F8A' }]} />
+      </View>
+
+      <View style={styles.buttonGroup}>
+        <Button title="Column" onPress={() => setDirection('column')} />
+        <Button title="Row" onPress={() => setDirection('row')} />
+        <Button title="Diagonal" onPress={() => setDirection('diagonal')} />
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#E6F0FA',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+  },
+  title: {
+    fontSize: 20,
+    marginBottom: 16,
+    fontWeight: 'bold',
+  },
+  boxContainer: {
+    width: 250,
+    height: 250,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  diagonal: {
+    position: 'relative',
+    width: 250,
+    height: 250,
+  },
+  box: {
+    width: 60,
+    height: 60,
+    margin: 5,
+  },
+  buttonGroup: {
+    gap: 8,
+    flexDirection: 'column',
+    width: '100%',
+  },
+});
+
